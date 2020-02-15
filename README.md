@@ -1,7 +1,7 @@
 # Detect SSH failed attempts
 Curious to know who is trying to get into your server via SSH?
 
-Run this command in your terminal or clone this repository and execute the python file.
+Log in your Linux server, run this command in your terminal or clone this repository and execute the python file.
 
 ```bash
 wget https://raw.githubusercontent.com/philipperemy/ssh-failed-attempts/master/ssh.py && clear && python3.6 ssh.py
