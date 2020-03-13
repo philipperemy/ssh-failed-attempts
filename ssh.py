@@ -69,7 +69,10 @@ def read_line(line: str):
 
         date = re.findall('^[a-zA-z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}', line)
         if len(date) > 0:
-            d = datetime.strptime(date[0], '%b %d %H:%M:%S')
+            try: # won't work for Feb 29...
+                d = datetime.strptime(date[0], '%b %d %H:%M:%S')
+            except:
+                return None
             d = d.replace(year=datetime.utcnow().year)
         else:
             d = None
