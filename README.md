@@ -4,7 +4,7 @@ Curious to know who is trying to get into your server via SSH?
 Log in your Linux server, run this command in your terminal or clone this repository and execute the python file.
 
 ```bash
-wget https://raw.githubusercontent.com/philipperemy/ssh-failed-attempts/master/ssh.py && clear && python3.6 ssh.py
+wget https://raw.githubusercontent.com/philipperemy/ssh-failed-attempts/master/ssh.py && clear && python3 ssh.py
 ```
 
 If your server receives a lot of attacks, you might consider to ban those IPs automatically. More info [fail2ban](https://www.linode.com/docs/security/using-fail2ban-to-secure-your-server-a-tutorial/).
