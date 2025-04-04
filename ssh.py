@@ -1,4 +1,4 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python3
 
 import gzip
 import json
@@ -69,13 +69,27 @@ def read_line(line: str):
 
         date = re.findall('^[a-zA-z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}', line)
         if len(date) > 0:
-            try: # won't work for Feb 29...
+            try:  # won't work for Feb 29...
                 d = datetime.strptime(date[0], '%b %d %H:%M:%S')
             except:
                 return None
             d = d.replace(year=datetime.utcnow().year)
         else:
             d = None
+        return ip, user, count, d
+
+    matches = re.findall(pattern='Invalid user .+ from [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+', string=line)
+    if len(matches) > 0:
+        match = matches[0]
+        user = match.split('Invalid user ')[-1].split(' from')[0]
+        ip = re.findall('[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+', match)[0]
+        count = 1
+        date = re.findall('^[a-zA-z]{3} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}', line)
+        try:
+            d = datetime.strptime(date[0], '%b %d %H:%M:%S')
+        except IndexError:
+            d = datetime.utcnow()
+        d = d.replace(year=datetime.utcnow().year)
         return ip, user, count, d
     return None
 
